@@ -10,6 +10,7 @@ import { AlertsModule } from './alerts/alerts.module'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { AuthService } from './auth/auth.service'
+import { SimpleDialogComponent } from './common/ui.service'
 import { DashboardModule } from './dashboard/dashboard.module'
 import { EquipmentControlModule } from './equipment-control/equipment-control.module'
 import { EquipmentNearByModule } from './equipment-near-by/equipment-near-by.module'
@@ -22,7 +23,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ReportsModule } from './reports/reports.module'
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, LoginComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    LoginComponent,
+    SimpleDialogComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
