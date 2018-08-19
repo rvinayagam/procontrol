@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -9,8 +9,9 @@ import { AdminModule } from './admin/admin.module'
 import { AlertsModule } from './alerts/alerts.module'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { AuthHttpInterceptor } from './auth/auth-http-interceptor'
 import { AuthService } from './auth/auth.service'
-import { SimpleDialogComponent } from './common/ui.service'
+import { SimpleDialogComponent, UiService } from './common/ui.service'
 import { DashboardModule } from './dashboard/dashboard.module'
 import { EquipmentControlModule } from './equipment-control/equipment-control.module'
 import { EquipmentNearByModule } from './equipment-near-by/equipment-near-by.module'
@@ -48,7 +49,15 @@ import { ReportsModule } from './reports/reports.module'
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    UiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
